@@ -1,0 +1,4 @@
+include LICENSE
+include cpp/CMakeLists.txt
+include cpp/src/pylibtermkey_bind.cpp
+graft cpp/thirdparty

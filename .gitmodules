@@ -1,0 +1,6 @@
+[submodule "cpp/thirdparty/libtermkey"]
+	path = cpp/thirdparty/libtermkey
+	url = https://github.com/neovim/libtermkey
+[submodule "cpp/thirdparty/pybind11"]
+	path = cpp/thirdparty/pybind11
+	url = https://github.com/pybind/pybind11
