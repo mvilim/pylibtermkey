@@ -15,8 +15,7 @@ env:
     - CIBW_TEST_REQUIRES=nose
     - CIBW_TEST_COMMAND='nosetests {project}/python/pylibtermkey'
     - TWINE_USERNAME='michael.vilim'
-    # encrypted TWINE_PASSWORD
-    - secure: 'TuBK1WIpnvH0AykBcsTy3n3CQuIHMFDPcV4jawmVYB4vY3bPQtkqiJTQuqYIEwGmEYqhPTK8f4z2A4Jbe78xRgT1AfgDLlN5TjIUnqDDr4f3yMa38qWqfrMZWJTrmfLUZ+gnMm5YHEnbZMuZ/qZ3Qlut2fASSTuizP9BL8+KWHjqWrNd2yIRU9Rt2cSYsKepeiIX6LFxFx4F4kfuimjzoFDAdEUJGfEwgF+05ZW/xVlL9VBW6UqTOBGSh+TPn4yN38RBrGW/l91v7f3j9vZor+Gq7iYb7QKNgtBZZIGrYx0ooGCj3aDcnZCA+9iyjc6jqGW9/y0Uvipzb85rMcw2yCdIBVbWHAVYY2dHb9zo8bFJipkskJxhweocNxP+RIBhN8yFf6Cgj/02XzCIuHVxMsxDkG32IHvhei9b5relMO8IQNzcAWkGgJ54noQjy2LUiXt4WrSeRr32b1MJP9bnPnVnriwH8fogCmDPL2hm5hNWfWd1hiOFnT9z+0/X/15oDhzVtXHjGsi2mKVw6h6A/+9sug+Yqe/xwCGXiJ1PFfPzvEgl/pk/sGcl/JQWj3/5ONH89jh/8yhMoKvmGEpPxKpwUsUOUm5grOu5K6HHFWWY7tH/E8ym9wJ2qCi0uPGGDlS2VorJe6NbsMczzKvgXSepI+3toMWEZyZdsonah3E='
+    # TWINE_PASSWORD is stored in the travis project settings
 
 script:
   # temporary fix for https://github.com/joerick/cibuildwheel/issues/122
