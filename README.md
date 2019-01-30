@@ -64,7 +64,7 @@ python setup.py test
 or use nose:
 
 ```
-nosetests {project}/python/pylibtermkey
+nosetests python/pylibtermkey
 ```
 
 ### Licensing
