@@ -10,6 +10,8 @@ found in the root folder of the project.
 
 ## pylibtermkey
 
+[![Build Status](https://travis-ci.org/mvilim/pylibtermkey.svg?branch=master)](https://travis-ci.org/mvilim/pylibtermkey)
+
 pylibtermkey is a set of Python bindings for [libtermkey](http://www.leonerd.org.uk/code/libtermkey/), a library for interpreting terminal input. [Other Python bindings](https://github.com/temoto/ctypes_libtermkey) are out of date and not easily installable. This project has a few differences:
 
 * libtermkey is automatically built as part of this project
