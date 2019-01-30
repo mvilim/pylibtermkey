@@ -14,7 +14,7 @@ env:
     - CIBW_BEFORE_BUILD='pip install cmake'
     - CIBW_TEST_REQUIRES=nose
     - CIBW_TEST_COMMAND='nosetests {project}/python/pylibtermkey'
-    - TWINE_USERNAME='michael.vilim'
+    - TWINE_USERNAME='mvilim'
     # TWINE_PASSWORD is stored in the travis project settings
 
 script:
