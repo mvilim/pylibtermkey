@@ -14,6 +14,7 @@ env:
     - CIBW_BEFORE_BUILD='pip install cmake'
     - CIBW_TEST_REQUIRES=nose
     - CIBW_TEST_COMMAND='nosetests {project}/python/pylibtermkey'
+    - TWINE_USERNAME='michael.vilim'
     # encrypted TWINE_PASSWORD
     - secure: pv8MqNT0UBfRHxbASqbHNte4uspq/PeqHJiRsnwZL2hg4DfduUQiZuXGhcY0zW6c0eQ/HPJtUhM/meVzkOgVedrVlhQHsOpeI1FhXztEoGk9sr0g/4PneK1W4ZXOXKZ0DVV99cWDcGL7UDGBxc2vR3FrUAcNUWDpVvtn/O7YHv1Se8gJmoZBESVFNQuLv0j3uDlgZ3fEJf4T3utm7lGBONilGpdIsBnbGUf47URUquc1aL9sFYqrleLULeTj4yNS6nKF5sPDj1IwpDA2RKqFLDo19wPAEvj/Pob5P075iilbyzKFnIodq49tWCh7NNmwlXSsQUNCz5HPzQElTnZ8YwC43VXMgnJuRGPfjWlTv7G2Z+UZjmFhMWRnTqFAswarQNLySWN6VG2/LeaLosRLV4b4DloGHL+9fZdKlAkVTKA+T1kgG9fBW2EDU2kevawDW72LIdg4c2HmRFOXhPx/VlUcK5OvbxDbhVPj2hVwPEhSitxQwuWKp0A+MWMopWdz24bj11r8wpEDNexElGAo7PJmkkCXuRnHpfSstJZYzmhZAqbLgoCVj8sdYuqDx05GaUnJvaWY6W5xoCqyrqGrcMcpiA68sEN0f2FVJBpXtyghTFl0+Yu0PhEFfLmIWgeMXluaDnD2DFIfkVVNfhRnawsdwMsxROKB2oMvowQQjAc=
 
