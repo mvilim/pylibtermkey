@@ -1,23 +1,30 @@
 language: python
+
 matrix:
   include:
-  - sudo: required
-    services:
-    - docker
-  - os: osx
-    language: generic
+    - sudo: required
+      services:
+        - docker
+    - os: osx
+      language: generic
+
 env:
   global:
-  - CIBW_BUILD='cp37-*'
-  - CIBW_BEFORE_BUILD='pip install cmake'
-  - CIBW_TEST_REQUIRES=nose
-  - CIBW_TEST_COMMAND='nosetests {project}/python/pylibtermkey'
-  - TWINE_USERNAME='michael.vilim'
-  - secure: WZ4Dufcxe8aPKX+TWdCZSaDAnIYCe8mcjccB+JAjCDmmoFL6c0Q0JKRcwue8fcRyUfLbQyotte2Ursy0nQEerioDhCU0v02ahw4+YbdbRSZlDrDEbkFw/11y1zbKhDMYPZdCRWDSkgyflFgWp2Smiwa116k8xPOi12xhGvYG0khghSJxdq35Do2T20O+hdeh2hNMm3oq6WEKEQDIwVTDUK9DW9woqptVIpE5lVVXYSi8fSPgO17iD2sw1gmzmFfjVkDc/lpzSaEO22TeBBnK+We4MvXZ0JRzxTlU8loc48U4ue7qixOwaitTR4C2jDtma19GA+Dh8YyPGgCpPZoaDoC0nn5Rqa80/t8lEUis6YluRzVK0GdyFLYdlAOTyKzbc2L/KAH4436iusdDuaYuYl82BLi5q0M4VCqsOd9LfNvPUxmdsGpmk+vFvTF587WjikCTBb+p22dXB5fGfuL9XBabQIX0UAcFFeKoHb/cS8zRWWoMYQjTP2yFSzhZkvmdH/SDuMLSDtq0GA5Pyf7tyrxLZvBZuho/hn8/DFWcpQENXfegiRlW1WbIjVN5HJU3ykEP0uwd31FvZTBR79Xo5+k9+ey7JEII0mEvEQeEGZOwEHxY/BXF08WrqrYSJ47bXVBaLTfNQAWJdG+8vOFakTyvzqyc+BE6i2SjygLLDfA=
+    - CIBW_BUILD='cp37-*'
+    - CIBW_BEFORE_BUILD='pip install cmake'
+    - CIBW_TEST_REQUIRES=nose
+    - CIBW_TEST_COMMAND='nosetests {project}/python/pylibtermkey'
+    - TWINE_USERNAME='michael.vilim'
+    # encrypted TWINE_PASSWORD
+    - secure: pv8MqNT0UBfRHxbASqbHNte4uspq/PeqHJiRsnwZL2hg4DfduUQiZuXGhcY0zW6c0eQ/HPJtUhM/meVzkOgVedrVlhQHsOpeI1FhXztEoGk9sr0g/4PneK1W4ZXOXKZ0DVV99cWDcGL7UDGBxc2vR3FrUAcNUWDpVvtn/O7YHv1Se8gJmoZBESVFNQuLv0j3uDlgZ3fEJf4T3utm7lGBONilGpdIsBnbGUf47URUquc1aL9sFYqrleLULeTj4yNS6nKF5sPDj1IwpDA2RKqFLDo19wPAEvj/Pob5P075iilbyzKFnIodq49tWCh7NNmwlXSsQUNCz5HPzQElTnZ8YwC43VXMgnJuRGPfjWlTv7G2Z+UZjmFhMWRnTqFAswarQNLySWN6VG2/LeaLosRLV4b4DloGHL+9fZdKlAkVTKA+T1kgG9fBW2EDU2kevawDW72LIdg4c2HmRFOXhPx/VlUcK5OvbxDbhVPj2hVwPEhSitxQwuWKp0A+MWMopWdz24bj11r8wpEDNexElGAo7PJmkkCXuRnHpfSstJZYzmhZAqbLgoCVj8sdYuqDx05GaUnJvaWY6W5xoCqyrqGrcMcpiA68sEN0f2FVJBpXtyghTFl0+Yu0PhEFfLmIWgeMXluaDnD2DFIfkVVNfhRnawsdwMsxROKB2oMvowQQjAc=
+
 script:
-- pip install git+https://github.com/YannickJadoul/cibuildwheel.git@pip-19-stalling-workaround
-- cibuildwheel --output-dir dist
-- python setup.py sdist --dist-dir dist
+  # temporary fix for https://github.com/joerick/cibuildwheel/issues/122
+  # - pip install cibuildwheel==0.10.0
+  - pip install git+https://github.com/YannickJadoul/cibuildwheel.git@pip-19-stalling-workaround
+  - cibuildwheel --output-dir dist
+  - python setup.py sdist --dist-dir dist
+
 deploy:
   provider: script
   script: bash scripts/deploy.sh
