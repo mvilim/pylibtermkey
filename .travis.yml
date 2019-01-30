@@ -18,11 +18,7 @@ env:
     # TWINE_PASSWORD is stored in the travis project settings
 
 script:
-  # temporary fix for https://github.com/joerick/cibuildwheel/issues/122
-  # - pip install cibuildwheel==0.10.0
-  - pip install git+https://github.com/YannickJadoul/cibuildwheel.git@pip-19-stalling-workaround
-  - cibuildwheel --output-dir dist
-  - python setup.py sdist --dist-dir dist
+  - bash scripts/build.sh
 
 deploy:
   provider: script
