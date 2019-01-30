@@ -110,7 +110,7 @@ with open(path.join(path.abspath(path.dirname(__file__)), 'README.md')) as fh:
 
 setup(
     name='pylibtermkey',
-    version='0.1.5',
+    version='0.1.6',
     author='Michael Vilim',
     author_email='michael.vilim@gmail.com',
     url='https://github.com/mvilim/pylibtermkey',
