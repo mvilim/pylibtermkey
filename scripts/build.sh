@@ -1,3 +1,5 @@
+set -e -x
+
 # temporary fix for https://github.com/joerick/cibuildwheel/issues/122
 # pip install cibuildwheel==0.10.0
 pip install git+https://github.com/YannickJadoul/cibuildwheel.git@pip-19-stalling-workaround
