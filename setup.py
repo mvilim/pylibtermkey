@@ -96,6 +96,7 @@ class CMakeBuild(build_ext):
 
 
 install_requires = [
+    'typing>3.6;python_version<"3.5"',
     ]
 
 
