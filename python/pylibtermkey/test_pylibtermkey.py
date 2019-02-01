@@ -35,7 +35,7 @@ try:
 except:
     has_pynput = False
 
-import pylibtermkey_cpp as termkey
+import pylibtermkey as termkey
 
 
 class Keys:
