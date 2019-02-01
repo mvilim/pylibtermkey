@@ -11,6 +11,7 @@
 #include <termkey.h>
 #include <memory>
 #include <string>
+#include <errno.h>
 
 namespace py = pybind11;
 
@@ -280,6 +281,10 @@ PYBIND11_MODULE(pylibtermkey_cpp, m) {
     // advanced key interpretation functions
 
     py::class_<TermKeyKey>(m, "TermKeyKey");
+
+    m.def("get_errno", []() { return errno; });
+
+    m.def("set_errno", [](int err) { errno = err; });
 
     py::enum_<TermKeySym>(m, "TermKeySym")
         .value("UNKNOWN", TERMKEY_SYM_UNKNOWN)

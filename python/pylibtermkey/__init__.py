@@ -51,6 +51,14 @@ class TermKeyKey:
         self.tkk = tkk
 
 
+def get_errno() -> int:
+    return pylibtermkey_cpp.get_errno()
+
+
+def set_errno(code: int):
+    pylibtermkey_cpp.set_errno(code)
+
+
 class TermKey:
     def __init__(self, flags: Set[TermKeyFlag] = None):
         if flags is None:
