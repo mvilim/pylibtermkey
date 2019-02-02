@@ -2,14 +2,14 @@ import pylibtermkey_cpp
 from pylibtermkey_cpp import TermKey as _TermKey, TermKeyKey as _TermKeyKey, TermKeyResult as _TermKeyResult, \
     TermKeyFlag as _TermKeyFlag, TermKeyCanon as _TermKeyCanon, TermKeyFormat as _TermKeyFormat, \
     TermKeySym as _TermKeySym, TermKeyType as _TermKeyType
-from enum import Enum
+from enum import IntEnum
 
 from typing import Set, Tuple
 
 __version__ = pylibtermkey_cpp.__version__
 
 
-class TermKeyFlag(_TermKeyFlag):
+class TermKeyFlag(IntEnum):
     NOINTERPRET = _TermKeyFlag.NOINTERPRET
     CONVERTKP = _TermKeyFlag.CONVERTKP
     RAW = _TermKeyFlag.RAW
@@ -21,12 +21,12 @@ class TermKeyFlag(_TermKeyFlag):
     NOSTART = _TermKeyFlag.NOSTART
 
 
-class TermKeyCanon(_TermKeyCanon):
+class TermKeyCanon(IntEnum):
     SPACESYMBOL = _TermKeyCanon.SPACESYMBOL
     DELBS = _TermKeyCanon.DELBS
 
 
-class TermKeyResult(_TermKeyResult):
+class TermKeyResult(IntEnum):
     NONE = _TermKeyResult.NONE
     KEY = _TermKeyResult.KEY
     EOF = _TermKeyResult.EOF
@@ -34,7 +34,7 @@ class TermKeyResult(_TermKeyResult):
     ERROR = _TermKeyResult.ERROR
 
 
-class TermKeyFormat(_TermKeyFormat):
+class TermKeyFormat(IntEnum):
     LONGMOD = _TermKeyFormat.LONGMOD
     CARETCTRL = _TermKeyFormat.CARETCTRL
     ALTISMETA = _TermKeyFormat.ALTISMETA
@@ -47,7 +47,7 @@ class TermKeyFormat(_TermKeyFormat):
     URWID = _TermKeyFormat.URWID
 
 
-class TermKeySym(_TermKeySym):
+class TermKeySym(IntEnum):
     UNKNOWN = _TermKeySym.UNKNOWN
     NONE = _TermKeySym.NONE
     BACKSPACE = _TermKeySym.BACKSPACE
@@ -112,7 +112,7 @@ class TermKeySym(_TermKeySym):
     N_SYMS = _TermKeySym.N_SYMS
 
 
-class TermKeyType(_TermKeyType):
+class TermKeyType(IntEnum):
     UNICODE = _TermKeyType.UNICODE
     FUNCTION = _TermKeyType.FUNCTION
     KEYSYM = _TermKeyType.KEYSYM
@@ -132,7 +132,10 @@ class TermKeyKey:
         return TermKeyType(self.tkk.type());
 
     def code(self):
-        return self.tkk.code()
+        code = self.tkk.code()
+        if self.type() is TermKeyType.KEYSYM:
+            code = TermKeySym(int(code))
+        return code
 
     def modifiers(self) -> int:
         return self.tkk.modifiers();
@@ -153,7 +156,7 @@ class TermKey:
     def __init__(self, flags: Set[TermKeyFlag] = None):
         if flags is None:
             flags = set()
-        self.tk = _TermKey(flags)
+        self.tk = _TermKey({_TermKeyFlag(flag) for flag in flags})
 
     def check_version(self, major: int, minor: int) -> bool:
         return self.tk.check_version(major, minor)
@@ -174,7 +177,7 @@ class TermKey:
         return self.tk.advisereadable()
 
     def strfkey(self, key: TermKeyKey, format: TermKeyFormat) -> str:
-        return self.tk.strfkey(key.tkk, format)
+        return self.tk.strfkey(key.tkk, _TermKeyFormat(format))
 
     def start(self) -> int:
         return self.tk.start()
@@ -186,10 +189,10 @@ class TermKey:
         return self.tk.is_started()
 
     def get_flags(self) -> Set[TermKeyFlag]:
-        return self.tk.get_flags()
+        return {TermKeyFlag(int(flag)) for flag in self.tk.get_flags()}
 
     def set_flags(self, newflags: Set[TermKeyFlag]) -> None:
-        self.tk.set_flags(newflags)
+        self.tk.set_flags({_TermKeyFlag(flag) for flag in newflags})
 
     def get_waittime(self) -> int:
         return self.tk.get_waittime()
@@ -198,10 +201,10 @@ class TermKey:
         self.tk.set_waittime(msec)
 
     def get_canonflags(self) -> Set[TermKeyCanon]:
-        return self.tk.get_canonflags()
+        return {TermKeyCanon(int(flag)) for flag in self.tk.get_canonflags()}
 
     def set_canonflags(self, newcanonflags: Set[TermKeyCanon]) -> None:
-        self.tk.set_canonflags(newcanonflags)
+        self.tk.set_canonflags({_TermKeyCanon(flag) for flag in newcanonflags})
 
     def get_buffer_size(self) -> int:
         return self.tk.get_buffersize()
