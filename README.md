@@ -49,6 +49,8 @@ For other features, see the [tests](https://github.com/mvilim/pylibtermkey/blob/
 
 To build this project:
 
+Building from source requires cmake (`pip install cmake`).
+
 ```
 python setup.py
 ```
