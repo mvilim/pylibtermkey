@@ -6,12 +6,12 @@
 // pylibtermkey is licensed under the MIT license. A copy of the license can be
 // found in the root folder of the project.
 
+#include <errno.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 #include <termkey.h>
 #include <memory>
 #include <string>
-#include <errno.h>
 
 namespace py = pybind11;
 
@@ -280,7 +280,25 @@ PYBIND11_MODULE(pylibtermkey_cpp, m) {
     // currently unimplemented: mouse/cursor functions and some of the more
     // advanced key interpretation functions
 
-    py::class_<TermKeyKey>(m, "TermKeyKey");
+    py::class_<TermKeyKey>(m, "TermKeyKey")
+        .def("type", [](TermKeyKey &key) { return key.type; })
+        .def("code",
+             [](TermKeyKey &key) {
+                 switch (key.type) {
+                     case TERMKEY_TYPE_UNICODE:
+                         return py::cast(key.code.codepoint);
+                     case TERMKEY_TYPE_FUNCTION:
+                         return py::cast(key.code.number);
+                     case TERMKEY_TYPE_KEYSYM:
+                         return py::cast(key.code.sym);
+                     case TERMKEY_TYPE_MOUSE:
+                         return py::cast(key.code.mouse);
+                     default:
+                         throw std::runtime_error("Unknown TermKeyKey type");
+                 }
+             })
+        .def("modifiers", [](TermKeyKey &key) { return key.modifiers; })
+        .def("utf8", [](TermKeyKey &key) { return key.utf8; });
 
     m.def("get_errno", []() { return errno; });
 
@@ -351,6 +369,7 @@ PYBIND11_MODULE(pylibtermkey_cpp, m) {
         .value("N_SYMS", TERMKEY_N_SYMS);
 
     py::enum_<TermKeyType>(m, "TermKeyType")
+        .value("UNICODE", TERMKEY_TYPE_UNICODE)
         .value("FUNCTION", TERMKEY_TYPE_FUNCTION)
         .value("KEYSYM", TERMKEY_TYPE_KEYSYM)
         .value("MOUSE", TERMKEY_TYPE_MOUSE)

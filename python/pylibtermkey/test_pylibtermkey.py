@@ -122,6 +122,12 @@ class InputTests(TermKeyTests, abc.ABC):
         self.tk.canonicalise(key)
         self.assertEqual(self.tk.strfkey(key, termkey.TermKeyFormat.VIM), bs_str)
 
+    def test_key_symbol(self):
+        self.tap(Keys.ESC)
+        res, key = self.tk.getkey_force()
+        self.assertEqual(res, termkey.TermKeyResult.KEY)
+        self.assertEqual(key.code(), termkey.TermKeySym.ESCAPE)
+
 
 @unittest.skipUnless(has_pynput, "Requires pynput (and thus a real input mechanism, like an X server)")
 class RealInputTests(InputTests, TestCase):
