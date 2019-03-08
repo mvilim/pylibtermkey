@@ -18,11 +18,11 @@ env:
     # TWINE_PASSWORD is stored in the travis project settings
 
 script:
-  - bash scripts/build.sh
+  - bash scripts/travis_build.sh
 
 deploy:
   provider: script
-  script: bash scripts/deploy.sh
+  script: bash scripts/travis_deploy.sh
   skip_cleanup: true
   on:
     tags: true
