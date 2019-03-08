@@ -3,7 +3,7 @@ set -e -x
 CIBUILDWHEEL_VERSION=0.10.1
 
 if [ "$TRAVIS_OS_NAME" = "linux" ]; then
-    pip install cibuildwheel=$CIBUILDWHEEL_VERSION
+    pip install cibuildwheel==$CIBUILDWHEEL_VERSION
 elif [ "$TRAVIS_OS_NAME" = "osx" ]; then
     sudo pip2 install cibuildwheel==$CIBUILDWHEEL_VERSION
 else
