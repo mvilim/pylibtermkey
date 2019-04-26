@@ -36,9 +36,9 @@ A minimal example of obtaining a keystroke and printing the results:
 import pylibtermkey_cpp as termkey
 tk = termkey.TermKey()
 
-res, key = self.tk.waitkey()
+res, key = tk.waitkey()
 print(res)
-print(self.tk.strfkey(key, termkey.TermKeyFormat.VIM)
+print(tk.strfkey(key, termkey.TermKeyFormat.VIM)
 ```
 
 Note that, by default, termkey will read from stdin causing python terminal to not display typed characters. It is best to use termkey in an pre-written script rather in a REPL setup (as you will not be able to see what you are typing once termkey is active).
