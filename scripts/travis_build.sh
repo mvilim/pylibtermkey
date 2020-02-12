@@ -1,6 +1,7 @@
 set -e -x
 
 if [ "$TRAVIS_OS_NAME" = "linux" ]; then
+    sudo apt install -y libncurses-dev
     pip install cibuildwheel
 elif [ "$TRAVIS_OS_NAME" = "osx" ]; then
     sudo pip install cibuildwheel
