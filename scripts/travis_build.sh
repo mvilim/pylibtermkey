@@ -3,7 +3,7 @@ set -e -x
 if [ "$TRAVIS_OS_NAME" = "linux" ]; then
     pip install cibuildwheel
 elif [ "$TRAVIS_OS_NAME" = "osx" ]; then
-    sudo pip2 install cibuildwheel
+    sudo pip install cibuildwheel
 else
     echo Unrecognized OS
     exit -1
