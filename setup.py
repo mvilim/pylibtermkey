@@ -117,6 +117,7 @@ setup(
     url='https://github.com/mvilim/pylibtermkey',
     description='Python bindings for libtermkey',
     long_description=long_description,
+    long_description_content_type="text/markdown",
     package_dir={'': 'python'},
     packages=['pylibtermkey'],
     ext_modules=[CMakeExtension('pylibtermkey_cpp', 'cpp')],
