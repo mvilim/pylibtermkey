@@ -1,8 +1,8 @@
 set -e -x
 
-if [ "$TRAVIS_OS_NAME" = "linux" ]; then
+if [ "$(uname)" == "Linux" ]; then
     yum install -y ncurses-devel
-elif [ "$TRAVIS_OS_NAME" = "osx" ]; then
+elif [ "$(uname)" == "Darwin" ]; then
     # no osx specific operations
     :
 else
