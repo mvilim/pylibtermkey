@@ -14,7 +14,7 @@ env:
     - CIBW_BEFORE_BUILD='./scripts/before_build.sh'
     - CIBW_TEST_REQUIRES=nose
     - CIBW_TEST_COMMAND='nosetests {project}/python/pylibtermkey'
-    - CIBW_MANYLINUX1_X86_64_IMAGE=manylinux2014
+    - CIBW_MANYLINUX_X86_64_IMAGE=manylinux2014
     - TWINE_USERNAME='mvilim'
     # TWINE_PASSWORD is stored in the travis project settings
 
