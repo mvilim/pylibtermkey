@@ -41,6 +41,15 @@ ExternalProject_Add(libtermkey
 set(LIBTERMKEY_LIB ${LIBTERMKEY_LIB_DIR}/libtermkey${CMAKE_SHARED_LIBRARY_SUFFIX})
 
 pybind11_add_module(pylibtermkey_cpp src/pylibtermkey_bind.cpp)
+
+if (APPLE)
+    set(RPATH
+        ${CMAKE_BUILD_RPATH}
+        ${LIB_PATH}/${PYLIBTERMKEY_LIBS}
+    )
+    SET_TARGET_PROPERTIES(pylibtermkey_cpp PROPERTIES BUILD_RPATH ${RPATH})
+endif()
+
 add_dependencies(pylibtermkey_cpp libtermkey)
 add_dependencies(pylibtermkey_cpp pybind11)
 target_include_directories(pylibtermkey_cpp
