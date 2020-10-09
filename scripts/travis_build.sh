@@ -1,9 +1,11 @@
 set -e -x
 
+CIBUILDWHEEL_VERSION=1.5.5
+
 if [ "$TRAVIS_OS_NAME" = "linux" ]; then
-    pip install cibuildwheel
+    pip install cibuildwheel==$CIBUILDWHEEL_VERSION
 elif [ "$TRAVIS_OS_NAME" = "osx" ]; then
-    sudo pip install cibuildwheel
+    sudo pip install cibuildwheel==$CIBUILDWHEEL_VERSION
 else
     echo Unrecognized OS
     exit -1
